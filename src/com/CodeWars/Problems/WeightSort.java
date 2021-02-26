@@ -1,0 +1,41 @@
+package com.CodeWars.Problems;
+
+public class WeightSort {
+
+    public static String orderWeight(String strng) {
+        // your code
+        //Split the weights by spaces
+        String listOfWeights[] = strng.split(" ");
+
+        int weightedSum = 0;
+        //bubblesort the list
+        for(int outter = 0; outter< listOfWeights.length; outter++){
+            for(int inner= 0; inner< listOfWeights.length; inner++){
+                if(weightedNumber(listOfWeights[outter])< weightedNumber(listOfWeights[inner])){
+                    swap(outter,inner, listOfWeights);
+                }
+            }
+        }
+        String temp ="";
+        for (String t:listOfWeights) {
+            temp += t+" ";
+        }
+        strng = temp.trim();
+        return strng;
+    }
+    public static int weightedNumber(String weight){
+        int weightedDigit = 0;
+        String[] weightedArray = weight.split("(?<=.)");
+        for(int i= 0; i < weightedArray.length; i++){
+            weightedDigit = weightedDigit + Integer.parseInt(weightedArray[i]);
+        }
+
+        return weightedDigit;
+    }
+    public static void swap(int a, int b, String[] swapping){
+        String temp = swapping[a];
+        swapping[a] = swapping[b];
+        swapping[b] = temp;
+    }
+
+}
